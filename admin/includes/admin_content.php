@@ -8,10 +8,24 @@
             </h1>
 
             <?php
-            $sql = "SELECT * FROM users WHERE id = 1";
-            $result = $database ->query($sql);
-            $user_found = mysqli_fetch_array($result);
-            echo $user_found['username'];
+
+            $users = User::find_all_users();
+            foreach ($users as $user){
+                echo $user ->id . "<br>";
+            }
+
+//            $found_user = User::find_user_by_id(2);
+//            echo $found_user ->username;
+
+//            $result = User::find_all_users();
+//            while ($row = mysqli_fetch_array($result)){
+//                echo $row['username'] . "<br>";
+//            }
+
+//            $result = User::find_user_by_id(2);
+//            $user = User::instantation($result);
+//            $user ->username = $result['last_name'];
+//            echo $user ->username;
             ?>
         </div>
     </div>
