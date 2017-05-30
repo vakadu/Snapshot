@@ -2,6 +2,8 @@
 
 class User{
 
+    protected static $db_table = "users";
+    protected static $db_table_fields = array('username', 'password', 'first_name', 'last_name');
     public $id;
     public $username;
     public $password;
@@ -91,4 +93,94 @@ class User{
         return array_key_exists($the_attribute, $object_properties);
         //if the attribute is there in object properties then array_key_exists returns true
     }
+
+    protected function properties(){
+
+        $properties = array();
+        foreach (self::$db_table_fields as $db_field){
+
+            if (property_exists($this, $db_field)){
+
+                $properties[$db_field] = $this ->$db_field;
+                //$this ->$db_field is not a property its a dynamic field
+                //$properties[$db_field] has all properties
+            }//property_exists — Checks if the object or class has a property
+        }
+        return $properties;
+        //when using get_object_vars it returns all properties, we don't need all of them like $db_table, $id so we use $db_table_fields to store only properties we need.
+        //return get_object_vars($this);
+    }//whenever we use this method it returns all object properties ie. id,username,first_name etc..
+
+    protected function clean_properties(){
+
+        global $database;
+        $clean_properties = array();
+        foreach ($this ->properties() as $key => $value){
+            $clean_properties[$key] = $database ->escape_string($value);
+        }
+        return $clean_properties;
+    }//this function is used for escaping properties bcz in properties() we not using escape_string()
+
+    public function save(){
+
+        return isset($this ->id) ? $this ->update() : $this ->create();
+        //if object id is set then create it else update it
+    }//this function creates user and also updates particular user with that id
+
+    public function create(){
+
+        global $database;
+        $properties = $this ->clean_properties();
+//        $sql  = "INSERT INTO " . self::$db_table . " (username, password, first_name, last_name) ";
+        $sql  = "INSERT INTO " . self::$db_table . " (" . implode(",", array_keys($properties)) .") ";
+        //The implode() function returns a string from the elements of an array.
+        //here pulling out array keys using array_keys()
+        $sql .= "VALUES ('" . implode("','", array_values($properties)) . "')";
+        //here values are divided by comma and single quotes
+        //The array_values() function returns an array containing all the values of an array.
+//        $sql .= $database ->escape_string($this ->username) . "', '";
+//        $sql .= $database ->escape_string($this ->password) . "', '";
+//        $sql .= $database ->escape_string($this ->first_name) . "', '";
+//        $sql .= $database ->escape_string($this ->last_name) . "')";
+        if ($database ->query($sql)){
+
+            $this ->id = $database ->the_insert_id();
+            //the_insert_id gives last id in this query and assign it to this class object id
+            return true;
+        }
+        else{
+            return false;
+        }
+    }//this function creates a user
+
+    public function update(){
+
+        global $database;
+        $properties = $this ->clean_properties();
+        $properties_pairs = array();
+        foreach ($properties as $key => $value){
+            $properties_pairs[] = "{$key} = '{$value}'";
+            //here we need 'username=' so we did it different than create
+        }
+
+        $sql  = "UPDATE " . self::$db_table . " SET ";
+        $sql .= implode(", ", $properties_pairs);
+//        $sql .= "username= '" . $database ->escape_string($this ->username) . "', ";
+//        $sql .= "password= '" . $database ->escape_string($this ->password) . "', ";
+//        $sql .= "first_name= '" . $database ->escape_string($this ->first_name) . "', ";
+//        $sql .= "last_name= '" . $database ->escape_string($this ->last_name) . "' ";
+        $sql .= " WHERE id= " . $database ->escape_string($this ->id);//for integer we don't need single quotes
+        $database ->query($sql);
+        return (mysqli_affected_rows($database ->connection) == 1) ? true : false;
+    }//this function updates user data in database
+
+    public function delete(){
+
+        global $database;
+        $sql  = "DELETE FROM " . self::$db_table ." ";
+        $sql .= "WHERE id = " . $database ->escape_string($this ->id);
+        $sql .= " LIMIT 1";
+        $database ->query($sql);
+        return (mysqli_affected_rows($database ->connection) == 1) ? true : false;
+    }//this function deletes user from database
 }
