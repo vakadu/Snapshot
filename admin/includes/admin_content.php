@@ -9,17 +9,22 @@
 
             <?php
 
-//            $user = new User();
+            $user = new User();
+            $user ->username = "luffy";
+            $user ->password = "luffy";
+            $user ->first_name = "luffy";
+            $user ->last_name = "luffy";
+            $user ->create();
+
+//            $users = User::find_all();
+//            foreach ($users as $user){
+//                echo $user ->username;
+//            }
+
+//            $user = User::find_by_id(10);
 //            $user ->username = "luffy";
 //            $user ->password = "luffy";
-//            $user ->first_name = "luffy";
-//            $user ->last_name = "luffy";
-//            $user ->create();
-
-            $user = User::find_user_by_id(10);
-            $user ->username = "luffy123";
-            $user ->password = "luffy123";
-            $user ->update();
+//            $user ->update();
 
 //            $user = User::find_user_by_id(2);
 //            $user ->delete();
