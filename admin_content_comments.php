@@ -55,4 +55,22 @@
 //            echo $user_found['username'];
 //            echo $user_found['last_name'];
 
-?>
+//            $photos = Photo::find_all();
+//            foreach ($photos as $photo){
+//                echo $photo ->size;
+//            }
+
+//            $photo = Photo::find_by_id(5);
+//            $photo ->title = "Kung fu panda!!!!!!";
+//            $photo ->save();
+
+//            $photo = Photo::find_by_id(1);
+//            echo $photo ->size;
+
+//            $photo = new Photo();
+//            $photo ->title = "fddff";
+//            $photo ->description = "fggf";
+//            $photo ->create();
+
+//            echo SITE_ROOT;
+

@@ -17,11 +17,11 @@ class Db_object{
         return static::find_by_query("SELECT * FROM " . static::$db_table ." ");
     }//this function finds all users
 
-    public static function find_by_id($user_id){
+    public static function find_by_id($id){
 
         //global $database;
-//        $result_set = $database ->query("SELECT * FROM users WHERE id = $user_id LIMIT 1");
-        $the_result_array = static::find_by_query("SELECT * FROM " . static::$db_table . " WHERE id = $user_id LIMIT 1");
+//        $result_set = $database ->query("SELECT * FROM users WHERE id = $id LIMIT 1");
+        $the_result_array = static::find_by_query("SELECT * FROM " . static::$db_table . " WHERE id = $id LIMIT 1");
 //        $found_user = mysqli_fetch_array($result_set);
 //        return $found_user;
 //        if (!empty($the_result_array)){

@@ -4,7 +4,7 @@ class Photo extends Db_object {
 
     protected static $db_table = "photos";
     protected static $db_table_fields = array('title', 'description', 'filename', 'type', 'size');
-    public $photo_id;
+    public $id;
     public $title;
     public $description;
     public $filename;
@@ -56,13 +56,13 @@ class Photo extends Db_object {
 
         return $this ->upload_directory . DS . $this ->filename;
         //this func returns directory/name of file
-        //even though we change directory name it doesn't give any errors
+        //even though we change directory name it doesn't give an
     }//making images path dynamic
 
     public function save(){
 
-        //if $photo_id is present then update it else create photo
-        if ($this ->photo_id){
+        //if $id is present then update it else create photo
+        if ($this ->id){
 
             $this ->update();
         }
@@ -106,4 +106,20 @@ class Photo extends Db_object {
             }
         }
     }
+
+    public function delete_photo(){
+
+        if ($this ->delete()){
+
+            //we are providing path to delete func to delete the image
+            $target_path = SITE_ROOT . DS . 'admin' . DS . $this->picture_path();
+            //now we have the path of image in $target_path
+            return unlink($target_path) ? true : false;
+            //The unlink(filename) function deletes a file.
+        }
+        else{
+            //if we are not able to delete then
+            return false;
+        }
+    }//delete data from database and from server(images folder)
 }
