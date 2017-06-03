@@ -8,7 +8,6 @@
 
 class Db_object{
 
-    protected static $db_table = "users";
 
     public static function find_all(){
 
@@ -140,7 +139,7 @@ class Db_object{
             return true;
         }
         else{
-            return false;
+            die("Query Failed " .mysqli_error($database ->connection));
         }
     }//this function creates a user
 

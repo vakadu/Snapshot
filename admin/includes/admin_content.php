@@ -9,46 +9,25 @@
 
             <?php
 
-            $user = new User();
-            $user ->username = "luffy";
-            $user ->password = "luffy";
-            $user ->first_name = "luffy";
-            $user ->last_name = "luffy";
-            $user ->create();
-
-//            $users = User::find_all();
-//            foreach ($users as $user){
-//                echo $user ->username;
+//            $photos = Photo::find_all();
+//            foreach ($photos as $photo){
+//                echo $photo ->description;
 //            }
 
-//            $user = User::find_by_id(10);
-//            $user ->username = "luffy";
-//            $user ->password = "luffy";
-//            $user ->update();
+//            $photo = Photo::find_by_id(1);
+//            $photo ->size = 22;
+//            $photo ->save();
 
-//            $user = User::find_user_by_id(2);
-//            $user ->delete();
-//            $user ->username = "luffy";
-//            $user ->password = "liffy";
-//            $user ->save();
+//            $photo = Photo::find_by_id(1);
+//            echo $photo ->size;
 
-//            $users = User::find_all_users();
-//            foreach ($users as $user){
-//                echo $user ->id . "<br>";
-//            }
+//            $photo = new Photo();
+//            $photo ->title = "fddff";
+//            $photo ->description = "fggf";
+//            $photo ->create();
 
-//            $found_user = User::find_user_by_id(2);
-//            echo $found_user ->username;
+//            echo SITE_ROOT;
 
-//            $result = User::find_all_users();
-//            while ($row = mysqli_fetch_array($result)){
-//                echo $row['username'] . "<br>";
-//            }
-
-//            $result = User::find_user_by_id(2);
-//            $user = User::instantation($result);
-//            $user ->username = $result['last_name'];
-//            echo $user ->username;
             ?>
         </div>
     </div>
@@ -56,3 +35,4 @@
 
 </div>
 <!-- /.container-fluid -->
+

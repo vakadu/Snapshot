@@ -9,6 +9,7 @@
 body {
     margin-top: 100px;
     background-color: #ffffff;
+    overflow-x: hidden;
 }
 
 @media(min-width:768px) {
