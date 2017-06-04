@@ -8,7 +8,6 @@
 
 class Db_object{
 
-
     public static function find_all(){
 
         //global $database; calling another class object

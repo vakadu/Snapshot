@@ -8,10 +8,11 @@
 <!-- Bootstrap Core JavaScript -->
 <script src="js/bootstrap.min.js"></script>
 
-<!-- Morris Charts JavaScript -->
-<script src="js/plugins/morris/raphael.min.js"></script>
-<script src="js/plugins/morris/morris.min.js"></script>
-<script src="js/plugins/morris/morris-data.js"></script>
+<!-- WYSIWYG Editor -->
+<script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+
+<!-- Custom Js -->
+<script src="js/scripts.js"></script>
 
 </body>
 
