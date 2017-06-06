@@ -37,6 +37,7 @@ $photos = Photo::find_all();
                                     <th>File Name</th>
                                     <th>Title</th>
                                     <th>Size</th>
+                                    <th>Comments</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -47,8 +48,9 @@ $photos = Photo::find_all();
                                         <img src="<?php echo $photo ->picture_path(); ?>"
                                              alt="No Image"
                                              class="img-responsive admin-photo-thumbnail">
-                                        <div class="pictures_link">
-                                            <a href="">View</a>
+                                        <div class="actions_link">
+                                            <a href="../post.php?id=<?php echo $photo ->id;
+                                            ?>">View</a>
                                             <a href="edit_photo.php?id=<?php echo $photo ->id;
                                             ?>">Edit</a>
                                             <a href="delete_photo.php?id=<?php echo $photo ->id
@@ -59,6 +61,14 @@ $photos = Photo::find_all();
                                     <td><?php echo $photo ->filename; ?></td>
                                     <td><?php echo $photo ->title; ?></td>
                                     <td><?php echo $photo ->size; ?></td>
+                                    <td>
+                                        <?php
+                                        $comments = Comment::find_the_comments($photo ->id);
+                                        $comment_count = count($comments);
+                                        ?>
+                                        <a href="comment_photo.php?id=<?php echo $photo ->id;
+                                        ?>"><?php echo $comment_count; ?></a>
+                                    </td>
                                 </tr>
                                 <?php endforeach; ?>
 

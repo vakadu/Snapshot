@@ -9,6 +9,31 @@ class Comment extends Db_object {
     public $author;
     public $body;
 
-    
+    public static function create_comment($photo_id, $author="vakadu", $body=""){
 
+        if (!empty($photo_id) && !empty($author) && !empty($body)){
+
+            $comment = new Comment();
+            //$comment ->photo_id = $photo_id;
+            $comment ->photo_id = (int) $photo_id;
+            //making sure photo_id is int
+            $comment ->author = $author;
+            $comment ->body = $body;
+
+            return $comment;
+        }
+        else{
+            return false;
+        }
+    }//creating comment and auto instantiating
+
+    public static function find_the_comments($photo_id=0){
+
+        global $database;
+        $sql  = "SELECT * FROM " . self::$db_table;
+        $sql .= " WHERE photo_id = " . $database ->escape_string($photo_id);
+        $sql .= " ORDER BY photo_id ASC";
+
+        return self::find_by_query($sql);
+    }//adding comment for particular photo
 }
