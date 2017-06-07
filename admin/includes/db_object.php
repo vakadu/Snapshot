@@ -172,4 +172,14 @@ class Db_object{
         $database ->query($sql);
         return (mysqli_affected_rows($database ->connection) == 1) ? true : false;
     }//this function deletes user from database
+
+    public static function count_all(){
+
+        global $database;
+        $sql = "SELECT COUNT(*) FROM " . static::$db_table;
+        //counting number of records in database table
+        $result_set = $database ->query($sql);
+        $row = mysqli_fetch_array($result_set);
+        return array_shift($row);
+    }//counting number of things like photos, users etc...
 }
