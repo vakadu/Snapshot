@@ -16,3 +16,14 @@ footer {
     width: 100% !important;
     height: 300px !important;
 }
+
+.pager .active a{
+    background-color: orangered;
+    color: white;
+}
+
+.pager li a:hover,
+.pager li a:focus{
+    background-color: orangered;
+    color: white;
+}
