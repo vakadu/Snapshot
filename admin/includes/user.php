@@ -124,4 +124,21 @@ class User extends Db_object {
 
         echo $this->image_path_and_placeholder();
     }
+
+    public function delete_photo()
+    {
+
+        if ($this->delete()) {
+
+            //we are providing path to delete func to delete the image
+            $target_path = SITE_ROOT . DS . 'admin' . DS . $this->upload_directory . DS .
+                $this ->user_image;
+            //now we have the path of image in $target_path
+            return unlink($target_path) ? true : false;
+            //The unlink(filename) function deletes a file.
+        } else {
+            //if we are not able to delete then
+            return false;
+        }
+    }//delete data from database and from server(images folder)
 }

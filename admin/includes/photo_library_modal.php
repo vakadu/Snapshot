@@ -22,7 +22,8 @@
                             <a role="checkbox" aria-checked="false" tabindex="0" id="" href="#"
                                class="thumbnail">
                                 <img src="<?php echo $photo ->picture_path(); ?>"
-                                     class="modal_thumbnails img-responsive" data="">
+                                     class="modal_thumbnails img-responsive"
+                                     data="<?php echo $photo ->id; ?>">
                             </a>
                             <div class="photo-id hidden"></div>
                         </div>

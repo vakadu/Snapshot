@@ -25,7 +25,7 @@ $photos = Photo::find_all();
                 <h1 class="page-header">
                     Photos
                 </h1>
-
+                <p class="bg-success"><?php echo $message; ?></p>
                 <div class="container">
                     <div class="row">
                         <div class="col-md-11">
@@ -54,7 +54,7 @@ $photos = Photo::find_all();
                                             <a href="edit_photo.php?id=<?php echo $photo ->id;
                                             ?>">Edit</a>
                                             <a href="delete_photo.php?id=<?php echo $photo ->id
-                                            ?>">Delete</a>
+                                            ?>" class="delete_link">Delete</a>
                                         </div>
                                     </td>
                                     <td><?php echo $photo ->id; ?></td>

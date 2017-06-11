@@ -6,6 +6,7 @@ $(document).ready(function () {
     var image_src;
     var image_src_splitted;
     var image_name;
+    var photo_id;
 
     $(".modal_thumbnails").click(function () {
 
@@ -29,6 +30,18 @@ $(document).ready(function () {
         //alert(image_src_splitted);
         image_name = image_src_splitted[image_src_splitted.length -1];
         //alert(image_name);
+        photo_id = $(this).attr('data');
+        $.ajax({
+            url: "includes/ajax_code.php",
+            data: {photo_id: photo_id},
+            type: "POST",
+            success: function (data) {
+                if (!data.error){
+                    $("#modal_sidebar").html(data);
+                    //whatever we get from server is inserted in modal_sidebar
+                }
+            }
+        });
     });
 
     $("#set_user_image").click(function () {
@@ -49,6 +62,11 @@ $(document).ready(function () {
                 }
             }
         });
+    });
+
+    //Delete confirm func
+    $(".delete_link").click(function () {
+        return confirm("Are you sure you want to delete");
     });
 
     tinymce.init({ selector:'textarea' });

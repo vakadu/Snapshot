@@ -25,7 +25,7 @@ $comments = Comment::find_all();
                     <h1 class="page-header">
                         Comments
                     </h1>
-
+                    <p class="bg-success"><?php echo $message; ?></p>
                     <div class="container">
                         <div class="row">
                             <div class="col-md-11">

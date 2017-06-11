@@ -6,13 +6,38 @@ class Session{
     public $user_id;
     public $username;
     public $count;
+    public $message;
 
     function __construct(){
 
         session_start();
         $this ->visitor_count();
         $this->check_the_login();
+        $this ->check_message();
     }//this function starts session automatically when the class is instantiated
+
+    public function message($msg = ""){
+
+        if (!empty($msg)){
+
+            $_SESSION['message'] = $msg;
+        }
+        else{
+            return $this->message;
+        }
+    }
+
+    private function check_message(){
+
+        if (isset($_SESSION['message'])){
+
+            $this ->message = $_SESSION['message'];
+            unset($_SESSION['message']);
+        }
+        else{
+            $this ->message = "";
+        }
+    }//this func is checking for messages
 
     public function visitor_count(){
 
@@ -67,3 +92,4 @@ class Session{
 }
 
 $session = new Session();
+$message = $session ->message();

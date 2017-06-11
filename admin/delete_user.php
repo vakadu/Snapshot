@@ -13,7 +13,8 @@ $user = User::find_by_id($_GET['id']);
 
 if ($user){
 
-    $user ->delete();
+    $session ->message("User has been deleted");
+    $user ->delete_photo();
     redirect("users.php");
 }//if our user is available then delete it
 else{
